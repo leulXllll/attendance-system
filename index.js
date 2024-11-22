@@ -24,20 +24,22 @@ app.get('/showdata',async(req,res)=>{
     let respo = await showData();     
 
     res.json(JSON.stringify(respo));
-
-    // res.redirect('/');
-    
+ 
     
 })
+app.delete('/data/:id',(req,res)=>{
+       let id = req.params;
+
+       console.log(id);
+       
+});
 
 app.post('/signup',(req,res)=>{
     
-    console.log('post request reached');
     
     const {fname,lname} = req.body;
     
     saveToDatabase(fname,lname);
-    console.log(fname,lname);
     
     res.redirect('/');
 
