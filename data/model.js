@@ -14,7 +14,6 @@ async function showData() {
 
         let res = await client.query('SELECT * FROM person');
         
-        console.log(res.rows)
 
         return res.rows;
     }catch(e){
@@ -31,7 +30,6 @@ async function saveToDatabase(fname,lastname) {
         
         await client.query(clientQuery,values);
 
-        console.log('succesful');
     }catch(e){
         console.log(e);
     }

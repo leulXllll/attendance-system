@@ -14,24 +14,21 @@ app.get('/',(req,res)=>{
      
     res.sendFile(path.join(__dirname,'public','index.html'));
 });
-app.get('/signup',(req,res)=>{
-    
-    res.sendFile(path.join(__dirname,'public',"signup.html"));
-
-});
 app.get('/showdata',async(req,res)=>{
     
     let respo = await showData();     
 
     res.json(JSON.stringify(respo));
  
-    
 })
+
+
+
 app.delete('/data/:id',(req,res)=>{
        let id = req.params;
 
        console.log(id);
-       
+
 });
 
 app.post('/signup',(req,res)=>{
