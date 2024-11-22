@@ -10,20 +10,44 @@ const client = new Client({
 })
 
 async function showData() {
-    let res = await client.query('SELECT * FROM person');
-    console.log(res.rows);
-}
+    try{
 
+        let res = await client.query('SELECT * FROM person');
+        
+        console.log(res.rows)
+
+        return res.rows;
+    }catch(e){
+        console.log(e)
+    }
+    
+}
+async function saveToDatabase(fname,lastname) {
+    try{
+
+        let clientQuery = `INSERT INTO person(firstname,lastname) VALUES ($1,$2)`;
+        
+        let values = [fname,lastname];
+        
+        await client.query(clientQuery,values);
+
+        console.log('succesful');
+    }catch(e){
+        console.log(e);
+    }
+
+
+}
 async function connetToDatabase(params) {
     try{
 
         await client.connect()
         console.log('connected')
-        showData();
+        // showData();
     }catch(e){
         console.log(e);
     }
     
 }
 
-module.exports = {connetToDatabase};
+module.exports = {connetToDatabase,showData,saveToDatabase};
