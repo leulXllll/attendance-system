@@ -4,7 +4,8 @@ window.addEventListener('DOMContentLoaded',()=>{
         let name = window.location.pathname;
         
         let body = document.querySelector('body');
-        
+
+
         if(name=='/'){
 
         let unorderedl = document.createElement('ul');
@@ -37,12 +38,23 @@ window.addEventListener('DOMContentLoaded',()=>{
                     })
         })
 
-        }else if(name=='delete.html'){
+        }else if(name=='/delete.html'){
+
+                
+                let id = document.getElementById('pid')
+
+                // console.log(id.value);
 
                 let deleteBtn = document.getElementById('btn-dlt');
-                // let data = 
+
                 deleteBtn.addEventListener('click',async()=>{
-                        await axios.delete('/12');
+
+
+                        alert('reloded')
+                        location.reload();
+                        await axios.delete(`/data/${id.value}`);
+                        
+
                 });
         }
         })

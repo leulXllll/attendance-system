@@ -36,6 +36,23 @@ async function saveToDatabase(fname,lastname) {
 
 
 }
+
+async function deleteFromDatabase(id){
+     
+    let Query = `DELETE FROM person WHERE id=$1`;
+    
+    let ID = [id];
+    try{
+
+        await client.query(Query,ID);
+        
+        console.log('deleted succesfully ')
+    }catch(e){
+        console.log(e)
+    }
+
+}
+
 async function connetToDatabase(params) {
     try{
 
@@ -48,4 +65,4 @@ async function connetToDatabase(params) {
     
 }
 
-module.exports = {connetToDatabase,showData,saveToDatabase};
+module.exports = {connetToDatabase,showData,saveToDatabase,deleteFromDatabase};
