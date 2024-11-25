@@ -42,7 +42,9 @@ window.addEventListener('DOMContentLoaded',()=>{
 
         }else if(name=='/delete.html'){
 
+                alert('hello from delte');
                 
+
                 let id = document.getElementById('pid')
 
                 // console.log(id.value);
@@ -56,6 +58,10 @@ window.addEventListener('DOMContentLoaded',()=>{
                         
 
                 });
+        }else if(name=='/userattendance.html'){
+                alert('hello from attenance');
+
         }
+
         })
 
