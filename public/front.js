@@ -32,7 +32,10 @@ window.addEventListener('DOMContentLoaded',()=>{
                                user.innerText = `ID ${Data[i].id} FirstName: ${Data[i].firstname} LastName: ${Data[i].lastname}`;            
                                  fragment.appendChild(user);  
                             }
-                            unorderedl.append(fragment);
+
+                            unorderedl.replaceChildren(fragment);
+
+                        //     unorderedl.append(fragment);
 
                             body.append(unorderedl);
                     })
