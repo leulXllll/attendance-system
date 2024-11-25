@@ -35,7 +35,6 @@ window.addEventListener('DOMContentLoaded',()=>{
 
                             unorderedl.replaceChildren(fragment);
 
-                        //     unorderedl.append(fragment);
 
                             body.append(unorderedl);
                     })
@@ -53,8 +52,6 @@ window.addEventListener('DOMContentLoaded',()=>{
                 deleteBtn.addEventListener('click',async()=>{
 
 
-                        alert('reloded')
-                        location.reload();
                         await axios.delete(`/data/${id.value}`);
                         
 
