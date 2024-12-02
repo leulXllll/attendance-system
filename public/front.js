@@ -63,21 +63,28 @@ window.addEventListener('DOMContentLoaded',()=>{
          
          let btnStat = document.getElementById('btn-stat');
 
+         let orderdList = document.createElement('ol');
          
          async function getInfo(id){
                  try{
                          
-                         await axios.get(`/getinfo/${id}`);
-                         
+                         let response = await axios.get(`/getinfo/${id}`);
+                          
+                           JSON.parse(response.data).forEach(data=>{
+                                let li = document.createElement('li');
+                                li.textContent = `Date ${data.date} Status ${data.status} Time ${data.time}`;
+                                orderdList.appendChild(li);
+                           }); 
+
+                                body.appendChild(orderdList);
+
                         }catch(e){
                                 console.log(e.message);
                         }
                 }
                 
                 
-                btnStat.addEventListener('click',()=>{
-                    
-
+                btnStat.addEventListener('click',()=>{      
                 getInfo(idValue.value);
         })
         }

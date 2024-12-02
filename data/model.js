@@ -69,24 +69,46 @@ async function connetToDatabase(params) {
 }
 async function getInfo(id) {
     
+    console.log('get info called');
+    try{
 
-    let Query2 = `SELECT p.id ,p.firstname ,p.lastname, a.date , a.status,a.time
-     FROM person p FULL OUTER JOIN attendance a ON p.id=a.person_id`;
+        let Query2 = `SELECT * FROM person p  FULL OUTER JOIN attendance a ON p.id=a.person_id
+        WHERE p.id=$1;
+        `;
+        
+        let queryValues = [id]; 
+        
+        let Query3 = `INSERT INTO attendance(person_id,date,status,time) 
+        VALUES($1,CAST($2 AS DATE),$3,$4)`;
+        
+        //  let secondValues = await client.query(Query3,[21,'2024-11-30','late','12:05']);
+        
+        let values  = await client.query(Query2,queryValues);
+        
+        console.log('get info from backend called');
+        
+        // console.log(values.rows);
+        // console.log(values.rows[0]);
 
-    let queryValues = [id]; 
+        let response = [];
 
-    let Query3 = `INSERT INTO attendance(person_id,date,status,time) 
-     VALUES($1,CAST($2 AS DATE),$3,$4)`;
+        values.rows.forEach(person=>{
+           let personStats = {
+            date:person.date,
+            status:person.status,
+            time:person.time
+           } 
+           response.push(personStats);
+        });
 
-     let secondValues = await client.query(Query3,[21,'2024-11-30','late','12:05']);
-    
-    let values  = await client.query(Query2);
+        console.log(response);
+        return response;
 
-    console.log('get info from backend called');
-
-    console.log(values.rows)
-    console.log('second values ||')
-    console.log(secondValues.rows)
+    }catch(e){
+        
+        console.log(e.message)
+        return e.message;
+    }
 
     
 }

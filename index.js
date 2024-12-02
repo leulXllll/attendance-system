@@ -30,9 +30,13 @@ app.get('/getinfo/:id',(req,res)=>{
 
     console.log('param value is ',reqParam);
 
-    getInfo(reqParam);
-
-    res.redirect('/');
+    getInfo(reqParam).then(resp=>{
+        let response = JSON.stringify(resp);
+        res.json(response);
+    }).catch(e=>{
+        console.log(e)
+    });
+    // res.redirect('/');
 
 })
 
@@ -40,6 +44,7 @@ app.delete('/data/:id',(req,res)=>{
        let id = req.params.id;
        
        deleteFromDatabase(id);
+
        res.redirect('/');
       
 });
