@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const { connetToDatabase, showData, saveToDatabase, deleteFromDatabase } = require('./data/model');
+const { connetToDatabase, showData, saveToDatabase, deleteFromDatabase, getInfo } = require('./data/model');
 const app = express();
 
 
@@ -22,7 +22,19 @@ app.get('/showdata',async(req,res)=>{
  
 })
 
+app.get('/getinfo/:id',(req,res)=>{
 
+    let reqParam = req.params.id;
+
+    console.log('request accepted');
+
+    console.log('param value is ',reqParam);
+
+    getInfo(reqParam);
+
+    res.redirect('/');
+
+})
 
 app.delete('/data/:id',(req,res)=>{
        let id = req.params.id;

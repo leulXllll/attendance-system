@@ -42,25 +42,44 @@ window.addEventListener('DOMContentLoaded',()=>{
 
         }else if(name=='/delete.html'){
 
-                alert('hello from delte');
                 
 
                 let id = document.getElementById('pid')
 
-                // console.log(id.value);
 
                 let deleteBtn = document.getElementById('btn-dlt');
 
                 deleteBtn.addEventListener('click',async()=>{
 
+                        console.log(`delete reached with ${id.value}`)
 
                         await axios.delete(`/data/${id.value}`);
                         
-
                 });
         }else if(name=='/userattendance.html'){
-                alert('hello from attenance');
 
+
+         let idValue = document.getElementById('idInfo');
+         
+         let btnStat = document.getElementById('btn-stat');
+
+         
+         async function getInfo(id){
+                 try{
+                         
+                         await axios.get(`/getinfo/${id}`);
+                         
+                        }catch(e){
+                                console.log(e.message);
+                        }
+                }
+                
+                
+                btnStat.addEventListener('click',()=>{
+                    
+
+                getInfo(idValue.value);
+        })
         }
 
         })
