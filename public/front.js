@@ -69,13 +69,21 @@ window.addEventListener('DOMContentLoaded',()=>{
                  try{
                          
                          let response = await axios.get(`/getinfo/${id}`);
+                         let fragment = document.createDocumentFragment();
                           
                            JSON.parse(response.data).forEach(data=>{
                                 let li = document.createElement('li');
-                                li.textContent = `Date ${data.date} Status ${data.status} Time ${data.time}`;
-                                orderdList.appendChild(li);
-                           }); 
 
+                                if(data.date!=null||data.status!=null||data.time!=null){
+                                        li.textContent = `Date ${data.date} Status ${data.status} Time ${data.time}`;
+                                }else{
+
+                                        li.textContent = 'No recorded attendance for this user';
+                                }
+
+                                fragment.appendChild(li);
+                           }); 
+                                orderdList.replaceChildren(fragment);
                                 body.appendChild(orderdList);
 
                         }catch(e){
