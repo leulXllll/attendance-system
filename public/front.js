@@ -95,6 +95,24 @@ window.addEventListener('DOMContentLoaded',()=>{
                 btnStat.addEventListener('click',()=>{      
                 getInfo(idValue.value);
         })
+        }else if(name=='/setattendance.html'){
+         
+                let form = document.querySelector('form');
+
+
+                let id = document.getElementById('id');
+                let date = document.getElementById('date');
+                let status = document.getElementById('status');
+                let time = document.getElementById('time');
+
+                form.addEventListener('submit',(e)=>{
+                        e.preventDefault();
+                        console.log(id.value);
+                        console.log(date.value);
+                        console.log(status.value);
+                        console.log(time.value);
+                });
+               
         }
 
         })
