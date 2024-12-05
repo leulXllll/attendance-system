@@ -77,7 +77,8 @@ window.addEventListener('DOMContentLoaded',()=>{
                                 let li = document.createElement('li');
 
                                 if(data.date!=null||data.status!=null||data.time!=null){
-                                        li.textContent = `Date ${data.date} Status ${data.status} Time ${data.time}`;
+                                        li.textContent = `Date: ${data.date.substring(0,10)}  Status:  ${data.status}  Time: ${data.time}`;
+                                        
                                 }else{
 
                                         li.textContent = 'No recorded attendance for this user';
