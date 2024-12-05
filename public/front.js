@@ -53,8 +53,11 @@ window.addEventListener('DOMContentLoaded',()=>{
                 deleteBtn.addEventListener('click',async()=>{
 
                         console.log(`delete reached with ${id.value}`)
-
-                        await axios.delete(`/data/${id.value}`);
+                        try{
+                                await axios.delete(`/data/${id.value}`);
+                        }catch(e){
+                                console.log(e);
+                        }
                         
                 });
         }else if(name=='/userattendance.html'){

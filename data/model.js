@@ -48,8 +48,8 @@ async function deleteFromDatabase(id){
         await client.query(Query,ID);
         await client.query(Query2,ID);
         
-        console.log('deleted succesfully ')
     }catch(e){
+        
         console.log('error here');
         console.log(e)
     }
@@ -61,7 +61,6 @@ async function connetToDatabase(params) {
 
         await client.connect()
         console.log('connected')
-        // showData();
     }catch(e){
         console.log(e);
     }
@@ -78,7 +77,6 @@ async function setattendanceToDB(id,date,status,time) {
         let values = [id,date,status,time];         
 
         await client.query(Query,values);
-        console.log('values saved');
 
     }catch(e){
         console.log(e)
@@ -87,7 +85,6 @@ async function setattendanceToDB(id,date,status,time) {
 
 async function getInfo(id) {
     
-    console.log('get info called');
     try{
 
         let Query2 = `SELECT * FROM person p  FULL OUTER JOIN attendance a ON p.id=a.person_id
@@ -103,7 +100,6 @@ async function getInfo(id) {
         
         let values  = await client.query(Query2,queryValues);
         
-        console.log('get info from backend called');
         
       
         let response = [];

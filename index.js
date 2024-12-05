@@ -41,11 +41,16 @@ app.get('/getinfo/:id',(req,res)=>{
 })
 
 app.delete('/data/:id',(req,res)=>{
-       let id = req.params.id;
-       
-       deleteFromDatabase(id);
 
-       res.redirect('/');
+       let id = req.params.id;
+       console.log('delete request reached');
+       deleteFromDatabase(id).then(re=>{
+        res.end();
+       }).catch(e=>{
+        res.status(403).end();
+       });
+       console.log('after the function ');
+
       
 });
 
@@ -66,7 +71,6 @@ app.post('/setattendance',(req,res)=>{
 
     console.log(`from the backend recieved msg ${id},${status},${date},${time}`);
     setattendanceToDB(id,date,status,time);
-    
 
     res.end();
 });
