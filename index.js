@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
-const { connetToDatabase, showData, saveToDatabase, deleteFromDatabase, getInfo } = require('./data/model');
+const { connetToDatabase, showData,setattendanceToDB,
+     saveToDatabase, deleteFromDatabase, getInfo } = require('./data/model');
 const app = express();
 
 
@@ -36,7 +37,6 @@ app.get('/getinfo/:id',(req,res)=>{
     }).catch(e=>{
         console.log(e)
     });
-    // res.redirect('/');
 
 })
 
@@ -58,6 +58,17 @@ app.post('/signup',(req,res)=>{
     
     res.redirect('/');
 
+});
+
+app.post('/setattendance',(req,res)=>{
+
+    const {id,status,date,time} = req.body;
+
+    console.log(`from the backend recieved msg ${id},${status},${date},${time}`);
+    setattendanceToDB(id,date,status,time);
+    
+
+    res.end();
 });
 
 

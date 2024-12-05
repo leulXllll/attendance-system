@@ -67,6 +67,24 @@ async function connetToDatabase(params) {
     }
     
 }
+
+async function setattendanceToDB(id,date,status,time) {
+    
+    try{
+
+        let Query = `INSERT INTO attendance(person_id,date,status,time)
+                 VALUES($1,CAST($2 AS DATE),$3,$4);`;
+
+        let values = [id,date,status,time];         
+
+        await client.query(Query,values);
+        console.log('values saved');
+
+    }catch(e){
+        console.log(e)
+    }
+}
+
 async function getInfo(id) {
     
     console.log('get info called');
@@ -87,9 +105,7 @@ async function getInfo(id) {
         
         console.log('get info from backend called');
         
-        // console.log(values.rows);
-        // console.log(values.rows[0]);
-
+      
         let response = [];
 
         values.rows.forEach(person=>{
@@ -113,4 +129,6 @@ async function getInfo(id) {
     
 }
 
-module.exports = {connetToDatabase,showData,saveToDatabase,deleteFromDatabase , getInfo};
+module.exports = {connetToDatabase,
+        showData,saveToDatabase,deleteFromDatabase 
+        , getInfo,setattendanceToDB};

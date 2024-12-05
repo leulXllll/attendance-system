@@ -1,3 +1,4 @@
+// const { default: axios } = require("axios");
 
 window.addEventListener('DOMContentLoaded',()=>{
         
@@ -106,11 +107,8 @@ window.addEventListener('DOMContentLoaded',()=>{
                 let time = document.getElementById('time');
 
                 form.addEventListener('submit',(e)=>{
-                        e.preventDefault();
-                        console.log(id.value);
-                        console.log(date.value);
-                        console.log(status.value);
-                        console.log(time.value);
+                      alert('hello');
+                       
                 });
                
         }
