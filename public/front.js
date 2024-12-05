@@ -1,4 +1,3 @@
-// const { default: axios } = require("axios");
 
 window.addEventListener('DOMContentLoaded',()=>{
         
@@ -52,7 +51,6 @@ window.addEventListener('DOMContentLoaded',()=>{
 
                 deleteBtn.addEventListener('click',async()=>{
 
-                        console.log(`delete reached with ${id.value}`)
                         try{
                                 await axios.delete(`/data/${id.value}`);
                         }catch(e){
@@ -99,22 +97,8 @@ window.addEventListener('DOMContentLoaded',()=>{
                 btnStat.addEventListener('click',()=>{      
                 getInfo(idValue.value);
         })
-        }else if(name=='/setattendance.html'){
-         
-                let form = document.querySelector('form');
-
-
-                let id = document.getElementById('id');
-                let date = document.getElementById('date');
-                let status = document.getElementById('status');
-                let time = document.getElementById('time');
-
-                form.addEventListener('submit',(e)=>{
-                      alert('hello');
-                       
-                });
-               
         }
+         
 
         })
 

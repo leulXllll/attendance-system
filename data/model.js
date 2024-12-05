@@ -1,10 +1,12 @@
 const {Client}= require('pg');
 
+require('dotenv').config();
+
 const client = new Client({
-    user:'postgres',
-    password:'elitebook',
-    host:'localhost',
-    database:'attendance',
+    user: process.env.user,
+    password: process.env.ps,
+    host:process.env.host,
+    database: process.env.database,
     port:5432
 
 })
@@ -113,7 +115,6 @@ async function getInfo(id) {
            response.push(personStats);
         });
 
-        console.log(response);
         return response;
 
     }catch(e){
